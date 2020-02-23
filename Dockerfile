@@ -1,6 +1,12 @@
-FROM nginx:1.13
+FROM node:current-slim
+
+WORKDIR /usr/src/app
+
+COPY . .
 
 RUN npm install && npm run build
+
+FROM nginx:1.13
 
 COPY dist /usr/share/nginx/html
 
